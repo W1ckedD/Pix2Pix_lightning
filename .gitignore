@@ -1,0 +1,17 @@
+ENV/
+*.pyc
+*.jpg
+*.png
+*.log
+*.jpeg
+*.csv
+*.xlsx
+*.xls
+*.pdf
+*.zip
+*.gz
+*.tar
+*.tgz
+*.rar
+*.bz2
+*.7z
