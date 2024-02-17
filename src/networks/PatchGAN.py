@@ -9,7 +9,7 @@ import torch
 
 
 class Discriminator(nn.Module):
-  def __init__(self, in_channels_a=3, in_channels_b=4):
+  def __init__(self, in_channels_a=3, in_channels_b=3):
     super(Discriminator, self).__init__()
 
     def discriminator_block(in_filters, out_filters, normalization=True):

@@ -14,8 +14,8 @@ class PairedDataset(Dataset):
     self.files_B = sorted(os.listdir(self.files_B_dir))
 
   def __getitem__(self, index):
-    tactile = Image.open(os.path.join(self.files_B_dir, self.files_B[index]))
-    rgb = Image.open(os.path.join(self.files_A_dir, self.files_A[index]))
+    tactile = Image.open(os.path.join(self.files_B_dir, self.files_B[index])).convert('RGB')
+    rgb = Image.open(os.path.join(self.files_A_dir, self.files_A[index])).convert('RGB')
 
     tactile = self.transform(tactile)
     rgb = self.transform(rgb)

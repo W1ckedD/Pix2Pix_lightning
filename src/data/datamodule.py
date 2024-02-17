@@ -6,7 +6,7 @@ from torchvision import transforms
 from src.data.dataset import PairedDataset
 
 class PairedDataModule(L.LightningDataModule):
-  def __init__(self, data_dir, batch_size,):
+  def __init__(self, data_dir, batch_size):
     super().__init__()
     self.data_dir = data_dir
     self.train_dir = os.path.join(data_dir, 'train')
