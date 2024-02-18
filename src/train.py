@@ -64,6 +64,8 @@ def main():
 
   )
   trainer.fit(model, dm)
+  trainer.validate(model, dm)
+  trainer.test(model, dm)
 
 if __name__ == '__main__':
   main()

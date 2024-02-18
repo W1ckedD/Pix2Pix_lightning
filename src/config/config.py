@@ -20,5 +20,5 @@ SAMPLE_INTERVAL = 50
 
 # Hardware params
 DEVICES = 1
-ACCELERATOR = 'cpu'
+ACCELERATOR = 'cuda'
 STRATEGY = 'auto'
