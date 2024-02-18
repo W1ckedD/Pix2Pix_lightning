@@ -9,7 +9,7 @@ N_EPOCHS = 100
 IMG_HEIGHT = 512
 IMG_WIDTH = 512
 USE_PERCEPTUAL = True
-LAMBDA_PIXEL = 100
+LAMBDA_PIXEL = 1
 
 # Data params
 DATA_PATH = 'sample_dataset/'

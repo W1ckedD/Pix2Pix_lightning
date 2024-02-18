@@ -20,7 +20,7 @@ class PairedDataset(Dataset):
     tactile = self.transform(tactile)
     rgb = self.transform(rgb)
 
-    return {'A': tactile, 'B': rgb}
+    return {'A': rgb, 'B': tactile}
   
   def __len__(self):
     return len(self.files_A)
