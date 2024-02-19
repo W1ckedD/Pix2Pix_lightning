@@ -60,7 +60,7 @@ def main():
     accelerator=config.ACCELERATOR,
     strategy=config.STRATEGY,
     logger=logger,
-    callbacks=[checkpoint_callback, early_stopping],
+    callbacks=[checkpoint_callback],
 
   )
   trainer.fit(model, dm)
