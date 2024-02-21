@@ -146,6 +146,10 @@ class Pix2Pix(L.LightningModule):
   def on_test_epoch_end(self):
     metrics = self.compute_metrics()
     self.log_dict(metrics, sync_dist=True)
+    self.logger.experiment.add_text("FID", str(metrics['fid']), self.global_step)
+    self.logger.experiment.add_text("PSNR", str(metrics['psnr']), self.global_step)
+    self.logger.experiment.add_text("SSIM", str(metrics['ssim']), self.global_step)
+    self.logger.experiment.add_text("LPIPS", str(metrics['lpips']), self.global_step)
 
   def configure_optimizers(self):
     optimizer_G = torch.optim.Adam(self.generator.parameters(), lr=self.lr, betas=(self.b1, self.b2))

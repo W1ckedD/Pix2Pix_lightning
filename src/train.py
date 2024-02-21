@@ -12,7 +12,9 @@ def main():
   # Data
   dm = PairedDataModule(
     data_dir=config.DATA_PATH,
-    batch_size=config.BATCH_SIZE
+    batch_size=config.BATCH_SIZE,
+    img_height=config.IMG_HEIGHT,
+    img_width=config.IMG_WIDTH
   )
 
   # Model
@@ -28,11 +30,11 @@ def main():
   )
 
   # Loggers
-  logger = TensorBoardLogger('logs/', name='pix2pix')
+  logger = TensorBoardLogger(config.LOG_DIR, name=f'pix2pix-v{config.VERSION}')
 
   # Callbacks
   checkpoint_callback = ModelCheckpoint(
-    dirpath='checkpoints/',
+    dirpath=f'checkpoints-v{config.VERSION}/',
     filename='pix2pix-{epoch:02d}-{val_loss:.2f}',
     save_top_k=3,
     monitor='val_loss_G',
@@ -47,7 +49,7 @@ def main():
 
   # Profiler
   profiler = PyTorchProfiler(
-    on_trace_ready=torch.profiler.tensorboard_trace_handler("logs_2/profiler"),
+    on_trace_ready=torch.profiler.tensorboard_trace_handler(f"{config.LOG_DIR}/profiler"),
     trace_memory=True,
     profile_memory=True,
     schedule=torch.profiler.schedule(skip_first=0, wait=0, warmup=0, active=10)
@@ -61,7 +63,7 @@ def main():
     strategy=config.STRATEGY,
     logger=logger,
     callbacks=[checkpoint_callback],
-
+    # profiler=profiler
   )
   trainer.fit(model, dm)
   trainer.validate(model, dm)
